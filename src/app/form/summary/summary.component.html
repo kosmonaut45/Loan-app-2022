@@ -1,1 +1,23 @@
-<p>summary works!</p>
+<h1>Summary</h1>
+<hr class="my-4" />
+<p>Here are the details of your application:</p>
+<span *ngIf="loanForm.loanAmount"
+  ><strong>Loan amount</strong>: {{ loanForm.loanAmount }} EUR;</span
+><br />
+<span *ngIf="loanForm.loanTerm"
+  ><strong>Loan term</strong>: {{ loanForm.loanTerm }} months;</span
+><br />
+<ng-container
+  ><span *ngIf="!loanForm.applicantName" style="!display: none"
+    ><br /><strong>We are sorry</strong>: your application does not meet our
+    criteria. We are unable to further process this request :(</span
+  ><span *ngIf="loanForm.applicantName"
+    ><strong>Your income</strong>: {{ loanForm.incomeAmount }} EUR;</span
+  ><br
+/></ng-container>
+<span *ngIf="loanForm.applicantName"
+  ><strong>Applicant</strong>: {{ loanForm.applicantName }};</span
+><br />
+<span *ngIf="loanForm.applicantEmail"
+  ><strong>Email</strong>: {{ loanForm.applicantEmail }};</span
+><br />

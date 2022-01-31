@@ -4,29 +4,25 @@ import { LoanForm } from 'src/app/common/loan-form';
 import { LoanService } from 'src/app/services/loan.service';
 
 @Component({
-  selector: 'app-loan-amount',
-  templateUrl: './loan-amount.component.html',
-  styleUrls: ['./loan-amount.component.sass'],
+  selector: 'app-applicant-name',
+  templateUrl: './applicant-name.component.html',
+  styleUrls: ['./applicant-name.component.sass'],
 })
-export class LoanAmountComponent implements OnInit {
+export class ApplicantNameComponent implements OnInit {
   public loanForm: FormGroup;
   submitted: boolean = false;
   public filledLoanForm: LoanForm = this.loanService.getLoanForm();
   @Output()
   nextStep: EventEmitter<number> = new EventEmitter();
 
-  constructor(
-    private fb: FormBuilder,
-    private loanService: LoanService
-  ) {
+  constructor(private fb: FormBuilder, private loanService: LoanService) {
     this.loanForm = fb.group({
-      amount: [
+      name: [
         '',
         {
           validators: [
-            Validators.min(500),
-            Validators.max(20000),
-            Validators.pattern('^[0-9]*$'),
+            Validators.maxLength(64),
+            Validators.pattern('^[a-zA-Z ]*$'),
             Validators.required,
           ],
         },
@@ -35,9 +31,9 @@ export class LoanAmountComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.filledLoanForm.loanAmount) {
+    if (this.filledLoanForm.applicantName) {
       this.loanForm.patchValue({
-        amount: this.filledLoanForm.loanAmount,
+        name: this.filledLoanForm.applicantName,
       });
     }
   }
@@ -47,15 +43,19 @@ export class LoanAmountComponent implements OnInit {
     if (this.loanForm?.invalid) {
       return;
     }
-    this.loanService.setLoanAmount(this.loanForm.get('amount')?.value);
-    this.nextStep.emit(1);
+    this.loanService.setApplicantName(this.loanForm.get('name')?.value);
+    this.nextStep.emit(4);
   }
 
-  get loanAmountValid() {
-    return this.loanForm.get('amount')?.valid;
+  get applicantNameValid() {
+    return this.loanForm.get('name')?.valid;
   }
 
-  get amount() {
-    return this.loanForm.get('amount');
+  get applicantName() {
+    return this.loanForm.get('name');
+  }
+
+  onBack() {
+    this.nextStep.emit(2);
   }
 }

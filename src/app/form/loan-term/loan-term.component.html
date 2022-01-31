@@ -1,1 +1,28 @@
-<p>loan-term works!</p>
+<p>Please enter loan term:</p>
+
+<form [formGroup]="loanForm" (ngSubmit)="onSubmit()">
+  <mat-slider
+    (change)="($event)"
+    thumbLabel
+    [displayWith]="formatLabel"
+    tickInterval="3"
+    step="1"
+    min="6"
+    max="60"
+    aria-label="months"
+    formControlName="term"
+  >
+  </mat-slider>
+
+  <div class="col-auto">
+    <button (click)="onBack()" mat-stroked-button color="primary">Back</button>
+    <button
+      type="submit"
+      mat-stroked-button
+      color="primary"
+      [disabled]="!loanForm.valid"
+    >
+      Continue
+    </button>
+  </div>
+</form>

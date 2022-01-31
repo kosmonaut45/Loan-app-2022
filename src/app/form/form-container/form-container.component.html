@@ -1,0 +1,8 @@
+<div [ngSwitch]="step">
+    <app-loan-amount *ngSwitchCase="0"  (nextStep)="setStep($event)"></app-loan-amount>
+    <app-loan-term *ngSwitchCase="1" (nextStep)="setStep($event)"></app-loan-term>
+    <app-income *ngSwitchCase="2" (nextStep)="setStep($event)"></app-income>
+    <app-applicant-name *ngSwitchCase="3" (nextStep)="setStep($event)"></app-applicant-name>
+    <app-applicant-email *ngSwitchCase="4" (nextStep)="setStep($event)"></app-applicant-email>
+    <app-summary *ngSwitchCase="5"></app-summary>
+</div>

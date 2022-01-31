@@ -1,17 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MenuItem } from '../common/menu-item';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.sass'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
   @Input() menuItems: MenuItem[] = [];
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
 }

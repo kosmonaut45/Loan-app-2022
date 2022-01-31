@@ -1,8 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input'
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSliderModule } from '@angular/material/slider'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,8 +18,10 @@ import { MainContainerComponent } from './main-container/main-container.componen
 import { LoanAmountComponent } from './form/loan-amount/loan-amount.component';
 import { LoanTermComponent } from './form/loan-term/loan-term.component';
 import { IncomeComponent } from './form/income/income.component';
-import { DependenciesComponent } from './form/dependencies/dependencies.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ApplicantNameComponent } from './form/applicant-name/applicant-name.component';
+import { ApplicantEmailComponent } from './form/applicant-email/applicant-email.component';
+import { FormContainerComponent } from './form/form-container/form-container.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +35,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoanAmountComponent,
     LoanTermComponent,
     IncomeComponent,
-    DependenciesComponent
+    ApplicantNameComponent,
+    ApplicantEmailComponent,
+    FormContainerComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +46,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     FlexLayoutModule,
     MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatSliderModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

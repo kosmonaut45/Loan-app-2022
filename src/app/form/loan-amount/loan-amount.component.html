@@ -1,7 +1,37 @@
-  <div>Please enter the desired loan amount</div>
-  <mat-form-field hintLabel="Max 10 characters" appearance="fill">
-    <mat-label>Enter some input</mat-label>
-    <input matInput placeholder="Loan amount" />
+<p>Please enter loan amount:</p>
+<p>We are able to offer you a loan from 500 to 20000 EUR.</p>
+
+<form [formGroup]="loanForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill" color="primary">
+    <mat-label>Eur</mat-label>
+    <input matInput formControlName="amount" />
   </mat-form-field>
-
-
+  <mat-error>
+    <div
+      style="display: {{!amount?.errors?.['min'] ? 'none': '' }};"
+      [hidden]="(amount?.errors?.['required'] && amount?.pristine)"
+    >
+      Entered loan amount is too small.
+    </div>
+  </mat-error>
+  <mat-error>
+    <div
+      style="display: {{!amount?.errors?.['max'] ? 'none': '' }};"
+      [hidden]="(amount?.errors?.['required'] && amount?.pristine)"
+    >
+      Entered loan amount is too big.
+    </div>
+  </mat-error>
+  <mat-error>
+    <div
+      style="display: {{!amount?.errors?.['pattern'] ? 'none': '' }};"
+      [hidden]="(amount?.errors?.['required'] && amount?.pristine)"
+    >
+      Numeric values only.
+    </div>
+  </mat-error>
+  <div class="col-auto">
+    <button routerLink="/home" mat-stroked-button color="primary">Back</button>
+    <button type="submit" mat-stroked-button color="primary">Continue</button>
+  </div>
+</form>
